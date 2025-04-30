@@ -1,356 +1,57 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Интерактивные карточки: Информатика и Java</title>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Интерактивные карточки: Информатика</title>
   <style>
-    :root {
-      --bg-light: #eef6ff;
-      --bg-dark: #2b2b2b;
-      --text-light: #333;
-      --text-dark: #fff;
-      --card-light: #fff;
-      --card-dark: #444;
-      --button-light: #4caf50;
-      --button-dark: #444;
-      --new-card-border: #ff9800;
-    }
-
-    html[data-theme="dark"] {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
-
-    html[data-theme="light"] {
-      background-color: var(--bg-light);
-      color: var(--text-light);
-    }
-
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-      margin: 0;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 30px;
-    }
-
-    .theme-switch {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .theme-switch button {
-      background-color: var(--button-light);
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .theme-switch button:hover {
-      background-color: var(--button-dark);
-    }
-
-    .filter {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      margin-bottom: 30px;
-    }
-
-    .filter select {
-      padding: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background-color: var(--card-light);
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      padding: 20px;
-      text-align: center;
-      font-size: 16px;
-      cursor: pointer;
-      transition: transform 0.3s, background-color 0.3s;
-      min-height: 160px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      border: 3px solid transparent;
-    }
-
-    .card.new-card {
-      border-color: var(--new-card-border);
-    }
-
-    .card:hover {
-      transform: rotateY(180deg);
-    }
-
-    .card img {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 10px;
-    }
-
-    pre {
-      background: #f5f5f5;
-      padding: 10px;
-      border-radius: 6px;
-      overflow-x: auto;
-      margin-top: 10px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .card .front, .card .back {
-      position: absolute;
-      backface-visibility: hidden;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .card .back {
-      transform: rotateY(180deg);
-    }
-
-    .progress {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 18px;
-    }
-
-    .show-code-btn {
-      margin-top: 10px;
-      padding: 8px 16px;
-      cursor: pointer;
-      font-size: 14px;
-      background-color: var(--button-light);
-      border: none;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .show-code-btn:hover {
-      background-color: var(--button-dark);
-    }
-
-    .next-btn {
-      margin-top: 20px;
-      padding: 8px 16px;
-      cursor: pointer;
-      font-size: 14px;
-      background-color: var(--button-light);
-      border: none;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .next-btn:hover {
-      background-color: var(--button-dark);
-    }
+    body { font-family: sans-serif; background-color: #eef6ff; padding: 20px; margin: 0; }
+    h1 { text-align: center; font-size: 28px; margin-bottom: 30px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; max-width: 1000px; margin: 0 auto; }
+    .card { background-color: white; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px; text-align: center; font-size: 16px; cursor: pointer; transition: transform 0.3s, background-color 0.3s; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .card:hover { transform: scale(1.03); background-color: #f0f8ff; }
+    .card img { width: 50px; height: 50px; margin-bottom: 10px; }
+    pre { background: #f5f5f5; padding: 10px; border-radius: 6px; overflow-x: auto; margin-top: 10px; width: 100%; box-sizing: border-box; }
   </style>
 </head>
 <body>
   <h1>Интерактивные карточки: Информатика и Java</h1>
-
-  <div class="theme-switch">
-    <button id="theme-switch-button">Тёмная тема</button>
-  </div>
-
-  <div class="filter">
-    <select id="category-filter">
-      <option value="all">Все категории</option>
-      <option value="basic">Основы Java</option>
-      <option value="syntax">Синтаксис</option>
-      <option value="loops">Циклы</option>
-    </select>
-  </div>
-
-  <div class="progress">
-    <span id="progress-count">0</span> из <span id="total-count">0</span> карточек просмотрено.
-  </div>
-
   <div class="cards" id="cards"></div>
 
   <script>
     const flashcards = [
-      {
-        term: "Синтаксис main-метода",
-        definition: "Точка входа в программу на Java.",
-        code: `
-public static void main(String[] args) {
-    System.out.println("Hello, Java!");
-}
-        `,
-        image: "https://img.icons8.com/fluency/96/java-coffee-cup-logo.png",
-        category: "basic"
-      },
-      {
-        term: "Цикл for",
-        definition: "Перебор с известным количеством итераций.",
-        code: `
-for (int i = 0; i < 5; i++) {
-    System.out.println(i);
-}
-        `,
-        image: "https://img.icons8.com/fluency/96/java-coffee-cup-logo.png",
-        category: "loops"
-      },
-      {
-        term: "Метод с возвращаемым значением",
-        definition: "Пример метода, который возвращает значение.",
-        code: `
-public int add(int a, int b) {
-    return a + b;
-}
-        `,
-        image: "https://img.icons8.com/fluency/96/java-coffee-cup-logo.png",
-        category: "syntax"
-      },
-      {
-        term: "Класс в Java",
-        definition: "Шаблон для создания объектов, предоставляющий свойства и методы.",
-        code: `
-public class Person {
-    private String name;
-
-    public Person(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-}
-        `,
-        image: "https://img.icons8.com/fluency/96/java-coffee-cup-logo.png",
-        category: "basic"
-      }
+      { term: "Алгоритм", definition: "Последовательность шагов для решения задачи.", image: "https://img.icons8.com/color/96/flow-chart.png" },
+      { term: "Бит", definition: "Наименьшая единица информации (0 или 1).", image: "https://img.icons8.com/fluency/96/binary-code.png" },
+      { term: "Байт", definition: "8 бит.", image: "https://img.icons8.com/fluency/96/data.png" },
+      { term: "Процессор", definition: "Устройство, выполняющее команды программ.", image: "https://img.icons8.com/fluency/96/cpu.png" },
+      { term: "Синтаксис main-метода", definition: "Точка входа в программу на Java.", code: `public static void main(String[] args) {\n    System.out.println("Hello, Java!");\n}`, image: "https://img.icons8.com/fluency/96/java-coffee-cup-logo.png" }
     ];
 
     const cardsContainer = document.getElementById('cards');
-    const progressCount = document.getElementById('progress-count');
-    const totalCount = document.getElementById('total-count');
-    let viewedCount = 0;
+    flashcards.forEach((card) => {
+      const div = document.createElement('div');
+      div.className = 'card';
 
-    function filterCards() {
-      const filterValue = document.getElementById('category-filter').value;
-      const filteredCards = flashcards.filter(card => filterValue === 'all' || card.category === filterValue);
-      renderCards(filteredCards);
-    }
+      const img = document.createElement('img'); img.src = card.image; img.alt = card.term;
+      const text = document.createElement('div'); text.textContent = card.term;
+      div.append(img, text);
 
-    function renderCards(cards) {
-      cardsContainer.innerHTML = '';
-      cards.forEach((card, index) => {
-        const div = document.createElement('div');
-        div.className = 'card new-card';
-
-        const front = document.createElement('div');
-        front.className = 'front';
-        const back = document.createElement('div');
-        back.className = 'back';
-
-        const img = document.createElement('img');
-        img.src = card.image;
-        img.alt = card.term;
-        const text = document.createElement('div');
-        text.textContent = card.term;
-
-        front.appendChild(img);
-        front.appendChild(text);
-
-        const definition = document.createElement('div');
-        definition.innerHTML = card.definition.replace(/\n/g, "<br>");
-        back.appendChild(definition);
-
-        if (card.code) {
-          const pre = document.createElement('pre');
-          pre.innerHTML = `<code class="language-java">${card.code}</code>`;
-          back.appendChild(pre);
-          hljs.highlightElement(pre.querySelector('code'));
+      div.addEventListener('click', () => {
+        if (text.textContent === card.term) {
+          text.innerHTML = card.definition;
+          if (card.code) {
+            const pre = document.createElement('pre');
+            pre.textContent = card.code;
+            div.appendChild(pre);
+          }
+        } else {
+          text.textContent = card.term;
+          const pre = div.querySelector('pre'); if (pre) div.removeChild(pre);
         }
-
-        const showCodeBtn = document.createElement('button');
-        showCodeBtn.classList.add('show-code-btn');
-        showCodeBtn.textContent = 'Показать код';
-        showCodeBtn.addEventListener('click', () => {
-          back.style.display = back.style.display === 'none' ? 'block' : 'none';
-        });
-        back.appendChild(showCodeBtn);
-
-        const nextBtn = document.createElement('button');
-        nextBtn.classList.add('next-btn');
-        nextBtn.textContent = 'Следующая карточка';
-        nextBtn.addEventListener('click', () => {
-          viewedCount++;
-          progressCount.textContent = viewedCount;
-          if (viewedCount > flashcards.length) viewedCount = flashcards.length;
-          totalCount.textContent = flashcards.length;
-        });
-
-        div.appendChild(front);
-        div.appendChild(back);
-        div.appendChild(nextBtn);
-
-        div.addEventListener('click', () => {
-          viewedCount++;
-          progressCount.textContent = viewedCount;
-          if (viewedCount > flashcards.length) viewedCount = flashcards.length;
-          totalCount.textContent = flashcards.length;
-        });
-
-        cardsContainer.appendChild(div);
       });
-    }
-
-    document.getElementById('category-filter').addEventListener('change', filterCards);
-
-    filterCards();
-
-    const themeSwitchButton = document.getElementById('theme-switch-button');
-    let currentTheme = 'light';
-    themeSwitchButton.addEventListener('click', () => {
-      if (currentTheme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeSwitchButton.textContent = 'Светлая тема';
-        currentTheme = 'dark';
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeSwitchButton.textContent = 'Тёмная тема';
-        currentTheme = 'light';
-      }
+      cardsContainer.appendChild(div);
     });
   </script>
 </body>
 </html>
+
