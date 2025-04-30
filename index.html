@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Интерактивные карточки: Информатика</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #eef6ff;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      background-color: #f0f8ff;
+    }
+
+    .card img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Интерактивные карточки: Информатика</h1>
+  <div class="cards" id="cards"></div>
+
+  <script>
+    const flashcards = [
+      {
+        term: "Алгоритм",
+        definition: "Последовательность шагов для решения задачи.",
+        image: "https://img.icons8.com/color/96/flow-chart.png"
+      },
+      {
+        term: "Бит",
+        definition: "Наименьшая единица информации (0 или 1).",
+        image: "https://img.icons8.com/color/96/0-1.png"
+      },
+      {
+        term: "Байт",
+        definition: "8 бит.",
+        image: "https://img.icons8.com/color/96/data.png"
+      },
+      {
+        term: "Процессор",
+        definition: "Устройство, выполняющее команды программ.",
+        image: "https://img.icons8.com/color/96/cpu.png"
+      },
+      {
+        term: "Оперативная память",
+        definition: "Хранит данные и программы во время работы компьютера.",
+        image: "https://img.icons8.com/color/96/ram.png"
+      },
+      {
+        term: "Файл",
+        definition: "Именованная область хранения данных на диске.",
+        image: "https://img.icons8.com/color/96/document.png"
+      },
+      {
+        term: "Интернет",
+        definition: "Глобальная сеть, объединяющая миллионы компьютеров.",
+        image: "https://img.icons8.com/color/96/internet--v1.png"
+      },
+      {
+        term: "IP-адрес",
+        definition: "Уникальный адрес устройства в сети Интернет.",
+        image: "https://img.icons8.com/color/96/ip-address.png"
+      },
+      {
+        term: "Программа",
+        definition: "Набор команд, выполняемых компьютером.",
+        image: "https://img.icons8.com/color/96/source-code.png"
+      },
+      {
+        term: "Операционная система",
+        definition: "Программа, управляющая работой компьютера.",
+        image: "https://img.icons8.com/color/96/windows-client.png"
+      }
+    ];
+
+    const cardsContainer = document.getElementById('cards');
+
+    flashcards.forEach((card, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+
+      const img = document.createElement('img');
+      img.src = card.image;
+      img.alt = card.term;
+
+      const text = document.createElement('div');
+      text.textContent = card.term;
+
+      div.appendChild(img);
+      div.appendChild(text);
+
+      div.addEventListener('click', () => {
+        text.textContent = text.textContent === card.term ? card.definition : card.term;
+      });
+
+      cardsContainer.appendChild(div);
+    });
+  </script>
+</body>
+</html>
